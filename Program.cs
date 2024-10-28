@@ -12,11 +12,10 @@ namespace SupermarketWEB
             // Add services to the container.
             builder.Services.AddRazorPages();
 
-            //agragando el contexto SupermarketContext a la aplicacion
+            //agregabdi el Contexto SupermarketContext a la aplicacion
             builder.Services.AddDbContext<SupermarketContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("SupermarketDB"))
+                options.UseSqlServer(builder.Configuration.GetConnectionString("SupermarketDB"))
             );
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

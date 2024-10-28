@@ -5,36 +5,34 @@ using SupermarketWEB.Models;
 
 namespace SupermarketWEB.Pages.Categories
 {
-	public class CreateModel : PageModel
-	{
-		private readonly SupermarketContext _context;
-		public CreateModel(SupermarketContext context)
-		{
-			//SupermarketContext context = null;
-			_context = context;
-		}
+    public class CreateModel : PageModel
+    {
+        public readonly SupermarketContext _context;
 
-		public IActionResult OnGet()
-		{
-			return Page();
-		}
+        public CreateModel(SupermarketContext context)
+        {
+            _context = context;
+        }
+        public IActionResult OnGet()
+        {
+            return Page();
+        }
 
-		[BindProperty]
-		public Category Category { get; set; } = default!;
+        [BindProperty]
+        public Category Category { get; set; } = default!;
 
-		public async Task<IActionResult> OnPostAsync()
-		{
-			if (!ModelState.IsValid || _context.Categories == null || Category == null)
-			{
-				return Page();
-			}
-			_context.Categories.Add(Category);
-			await _context.SaveChangesAsync();
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid || _context.Categories == null || Category == null)
+            {
+                return Page();
+            }
 
-			return RedirectToPage("./Index");
-		}
+            _context.Categories.Add(Category);
+            await _context.SaveChangesAsync();
 
+            return RedirectToPage("./Index");
 
-	}
-
+        }
+    }
 }
